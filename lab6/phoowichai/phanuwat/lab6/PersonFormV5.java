@@ -65,6 +65,9 @@ public class PersonFormV5 extends PersonFormV4 {
         tfHeight.setFont(new Font("Serif", Font.BOLD, 14));
         tfWeight.setFont(new Font("Serif", Font.BOLD, 14));
         tfDoB.setFont(new Font("Serif", Font.BOLD, 14));
+        
+        // set font of text area
+        noteArea.setFont(new Font("Serif", Font.BOLD, 14));
     }
 
     public static void createAndShowGUI() {
