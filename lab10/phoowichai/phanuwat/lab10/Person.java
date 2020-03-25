@@ -14,10 +14,10 @@ class Person implements Comparable<Person>, Serializable {
     protected LocalDate dob;
 
     // constructor
-    Person(String name, double height, double weight, LocalDate dob) {
+    Person(String name, double weight, double height, LocalDate dob) {
         this.name = name;
-        this.height = height;
         this.weight = weight;
+        this.height = height;
         this.dob = dob;
     }
 
