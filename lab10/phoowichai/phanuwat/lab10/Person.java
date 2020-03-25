@@ -1,12 +1,19 @@
 package phoowichai.phanuwat.lab10;
 
 import java.time.*;
+import java.io.*;
 
-class Person implements Comparable<Person> {
+class Person implements Comparable<Person>, Serializable {
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+    
     protected String name;
     protected double weight, height;
     protected LocalDate dob;
 
+    // constructor
     Person(String name, double height, double weight, LocalDate dob) {
         this.name = name;
         this.height = height;
@@ -57,14 +64,32 @@ class Person implements Comparable<Person> {
         double height = getHeight();
         LocalDate dob = getDoB();
 
-        //Get age. (Compare dob with today date)
-        int year_old = Math.abs(dob.getYear() - LocalDate.now().getYear());
-        int month_old = Math.abs(dob.getMonthValue() - LocalDate.now().getMonthValue());
-        int day_old = Math.abs(dob.getDayOfMonth() - LocalDate.now().getDayOfMonth());
+        /**
+        // // get age. (compare dob with today date)
+        // int year_old = Math.abs(dob.getYear() - LocalDate.now().getYear());
+        // int month_old = Math.abs(dob.getMonthValue() - LocalDate.now().getMonthValue());
+        // int day_old = Math.abs(dob.getDayOfMonth() - LocalDate.now().getDayOfMonth());
 
-        return name + " is " + year_old + " years " + month_old  + " months " 
-                + day_old + " days, has weight as" + weight + " kg., and height as " 
-                + height + " cm.";
+        // // check day
+        // if (dob.getMonthValue() > LocalDate.now().getMonthValue()) {
+        //     year_old -= 1;
+        // }
+
+        // return name + " is " + year_old + " years " + month_old  + " months " 
+        //         + day_old + " days, has weight as" + weight + " kg., and height as " 
+        //         + height + " cm.";
+         */
+
+        LocalDate birthDay = LocalDate.of(dob.getYear(), dob.getMonthValue(), dob.getDayOfMonth());
+        LocalDate nowDay = LocalDate.now();
+        Period ageNow = Period.between(birthDay, nowDay);
+        int year_old = ageNow.getYears();
+        int month_old = ageNow.getMonths();
+        int day_old = ageNow.getDays();
+        String msg = name + " is " + year_old + " years " + month_old  + " months "
+                    + day_old + " days, has weight as" + weight + " kg., and height as "
+                    + height + " cm.";
+        return msg;
     }
 
     @Override
